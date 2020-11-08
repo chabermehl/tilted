@@ -46,5 +46,7 @@ async def on_tilted(ctx):
             print('playing...')
         if not bot_voice.is_playing():
             await bot_voice.disconnect()
+    else:
+        print(f'{user} is not in voice chat.')
 
 bot.run(TOKEN)
