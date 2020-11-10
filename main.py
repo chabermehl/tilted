@@ -13,7 +13,10 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 FFMPEG = os.getenv('FFMPEG')
 
-bot = commands.Bot(command_prefix='!')
+intents = discord.Intents.default()
+intents.members = True
+
+bot = commands.Bot(command_prefix='!', intents=intents)
 
 
 @bot.event
@@ -47,9 +50,8 @@ async def on_tilted(ctx):
     Connects to voice channel and plays audio when !tilted command is used.
     Disconnects when audio is done playing.
     """
-    user = ctx.author
-    helpers.command_logger(user, 'TILTED')
-    await basic_voice_command(user, 'audio/are-you-tilted.m4a')
+    helpers.command_logger(ctx.author, 'TILTED')
+    await basic_voice_command(ctx.author, 'audio/are-you-tilted.m4a')
 
 
 @bot.command(name="ff", brief="landers saying can we please ff", pass_context=True)
@@ -58,9 +60,8 @@ async def on_ff(ctx):
     Connects to voice channel and plays audio when !tilted command is used.
     Disconnects when audio is done playing.
     """
-    user = ctx.author
-    helpers.command_logger(user, 'FF')
-    await basic_voice_command(user, 'audio/FF.mp3')
+    helpers.command_logger(ctx.author, 'FF')
+    await basic_voice_command(ctx.author, 'audio/FF.mp3')
 
 
 @bot.command(name="unicef", brief="Fred on unicef mission", pass_context=True)
@@ -68,9 +69,8 @@ async def on_unicef(ctx):
     """
     Why donate when you can play league?
     """
-    user = ctx.author
-    helpers.command_logger(user, 'UNICEF')
-    await basic_voice_command(user, 'audio/unicef.mp3')
+    helpers.command_logger(ctx.author, 'UNICEF')
+    await basic_voice_command(ctx.author, 'audio/unicef.mp3')
 
 
 @bot.command(name="rolando", brief="head phone users beware", pass_context=True)
@@ -78,9 +78,8 @@ async def on_rolando(ctx):
     """
     No one asked for this
     """
-    user = ctx.author
-    helpers.command_logger(user, 'ROLANDO')
-    await basic_voice_command(user, 'audio/rolando.mp3')
+    helpers.command_logger(ctx.author, 'ROLANDO')
+    await basic_voice_command(ctx.author, 'audio/rolando.mp3')
 
 
 @bot.command(name="lose", brief="THE ONLY WAY TO LOSE IS TO NOT HAVE FUN", pass_context=True)
@@ -88,9 +87,8 @@ async def on_lose(ctx):
     """
     A signature Zaiah quote
     """
-    user = ctx.author
-    helpers.command_logger(user, 'LOSE')
-    await basic_voice_command(user, 'audio/only-way-to-lose.wav')
+    helpers.command_logger(ctx.author, 'LOSE')
+    await basic_voice_command(ctx.author, 'audio/only-way-to-lose.wav')
 
 
 @bot.command(name="stream", brief="Wheres the stream?", pass_context=True)
@@ -98,9 +96,22 @@ async def on_stream(ctx):
     """
     Wheres the stream at tho?
     """
-    user = ctx.author
-    helpers.command_logger(user, 'STREAM')
-    await basic_voice_command(user, 'audio/stream.mp3')
+    helpers.command_logger(ctx.author, 'STREAM')
+    await basic_voice_command(ctx.author, 'audio/stream.mp3')
+
+
+@bot.command(name="idiotsinvoicechat", brief="the idiots", pass_context=True)
+async def on_idiots(ctx):
+    """
+    Lists out all the idiots in chat
+    """
+    helpers.command_logger(ctx.author, 'IDIOTS')
+    channel = ctx.message.guild.voice_channels[0]
+    response = ''
+    for mem in channel.members:
+        response = response + \
+            f'{mem.nick if mem.nick is not None else mem.name}\n'
+    await ctx.send(response)
 
 
 @bot.command(name="contribute", brief="Link to GitHub repo. Now accepting PRs")
