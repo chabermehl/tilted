@@ -54,6 +54,15 @@ async def on_tilted(ctx):
     await basic_voice_command(ctx.author, 'audio/are-you-tilted.m4a')
 
 
+@bot.command(name="dork", brief="Ya dork", pass_context=True)
+async def on_stream(ctx):
+    """
+    ya dork??
+    """
+    helpers.command_logger(ctx.author, 'DORK')
+    await basic_voice_command(ctx.author, 'audio/ya-dork.m4a')
+
+
 @bot.command(name="ff", brief="landers saying can we please ff", pass_context=True)
 async def on_ff(ctx):
     """
@@ -62,6 +71,8 @@ async def on_ff(ctx):
     """
     helpers.command_logger(ctx.author, 'FF')
     await basic_voice_command(ctx.author, 'audio/FF.mp3')
+
+# BEGIN: Fred based commands
 
 
 @bot.command(name="unicef", brief="Fred on unicef mission", pass_context=True)
@@ -80,6 +91,17 @@ async def on_rolando(ctx):
     """
     helpers.command_logger(ctx.author, 'ROLANDO')
     await basic_voice_command(ctx.author, 'audio/rolando.mp3')
+
+
+@bot.command(name="bud", brief="Bud", pass_context=True)
+async def on_bud(ctx):
+    """
+    Bud.
+    """
+    helpers.command_logger(ctx.author, 'BUD')
+    await basic_voice_command(ctx.author, 'audio/YouGottaCutItOut.wav')
+
+# END: Fred based commands
 
 
 @bot.command(name="lose", brief="THE ONLY WAY TO LOSE IS TO NOT HAVE FUN", pass_context=True)
