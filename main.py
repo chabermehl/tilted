@@ -55,7 +55,7 @@ async def on_tilted(ctx):
 
 
 @bot.command(name="dork", brief="Ya dork", pass_context=True)
-async def on_stream(ctx):
+async def on_dork(ctx):
     """
     ya dork??
     """
