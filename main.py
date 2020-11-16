@@ -44,82 +44,14 @@ async def basic_voice_command(user, sound_byte):
         print(f'{user} is not in voice chat.')
 
 
-@bot.command(name="tilted", brief="plays an mp3 that asks Zaiah if hes tilted", pass_context=True)
-async def on_tilted(ctx):
+@bot.command(name="tilt", brief="an assortment of potentially tilting commands", description=helpers.build_command_description('audio'), pass_context=True)
+async def on_tilt(ctx, command: str):
     """
-    Connects to voice channel and plays audio when !tilted command is used.
-    Disconnects when audio is done playing.
+    Handles the tilt command and its various options
     """
-    helpers.command_logger(ctx.author, 'TILTED')
-    await basic_voice_command(ctx.author, 'audio/are-you-tilted.m4a')
-
-
-@bot.command(name="dork", brief="Ya dork", pass_context=True)
-async def on_dork(ctx):
-    """
-    ya dork??
-    """
-    helpers.command_logger(ctx.author, 'DORK')
-    await basic_voice_command(ctx.author, 'audio/ya-dork.m4a')
-
-
-@bot.command(name="ff", brief="landers saying can we please ff", pass_context=True)
-async def on_ff(ctx):
-    """
-    Connects to voice channel and plays audio when !tilted command is used.
-    Disconnects when audio is done playing.
-    """
-    helpers.command_logger(ctx.author, 'FF')
-    await basic_voice_command(ctx.author, 'audio/FF.mp3')
-
-# BEGIN: Fred based commands
-
-
-@bot.command(name="unicef", brief="Fred on unicef mission", pass_context=True)
-async def on_unicef(ctx):
-    """
-    Why donate when you can play league?
-    """
-    helpers.command_logger(ctx.author, 'UNICEF')
-    await basic_voice_command(ctx.author, 'audio/unicef.mp3')
-
-
-@bot.command(name="rolando", brief="head phone users beware", pass_context=True)
-async def on_rolando(ctx):
-    """
-    No one asked for this
-    """
-    helpers.command_logger(ctx.author, 'ROLANDO')
-    await basic_voice_command(ctx.author, 'audio/rolando.mp3')
-
-
-@bot.command(name="bud", brief="Bud", pass_context=True)
-async def on_bud(ctx):
-    """
-    Bud.
-    """
-    helpers.command_logger(ctx.author, 'BUD')
-    await basic_voice_command(ctx.author, 'audio/YouGottaCutItOut.wav')
-
-# END: Fred based commands
-
-
-@bot.command(name="lose", brief="THE ONLY WAY TO LOSE IS TO NOT HAVE FUN", pass_context=True)
-async def on_lose(ctx):
-    """
-    A signature Zaiah quote
-    """
-    helpers.command_logger(ctx.author, 'LOSE')
-    await basic_voice_command(ctx.author, 'audio/only-way-to-lose.wav')
-
-
-@bot.command(name="stream", brief="Wheres the stream?", pass_context=True)
-async def on_stream(ctx):
-    """
-    Wheres the stream at tho?
-    """
-    helpers.command_logger(ctx.author, 'STREAM')
-    await basic_voice_command(ctx.author, 'audio/stream.mp3')
+    helpers.command_logger(ctx.author, f'TILT {command}')
+    command_map = helpers.build_command_map('audio')
+    await basic_voice_command(ctx.author, f'audio/{command_map[command]}')
 
 
 @bot.command(name="idiotsinvoicechat", brief="the idiots", pass_context=True)
